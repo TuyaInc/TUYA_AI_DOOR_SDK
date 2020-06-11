@@ -1,6 +1,6 @@
-# 文件夹说明
-saas: 门禁 saas 设备SDK
-local：门禁 本地化方案 SDK
+# 文件夹说明	
+
+demo : 门禁 SDK demo
 web_dist: demo 网页
 
 
