@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-COMPILE_PREFIX=/home/rqg/toolchains/gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+COMPILE_PREFIX=/opt/arm-himix200-linux/bin/arm-himix200-linux-
 
 export AR=${COMPILE_PREFIX}ar
 export AS=${COMPILE_PREFIX}as
@@ -18,6 +18,6 @@ pushd build
 cmake ..
 
 make clean
-make -j4
+make -j $(nproc)
 
 popd
