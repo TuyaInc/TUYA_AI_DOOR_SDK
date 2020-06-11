@@ -1,0 +1,1 @@
+# TUYA_AI_DOOR_SDK
