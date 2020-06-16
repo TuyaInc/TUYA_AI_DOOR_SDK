@@ -1,11 +1,9 @@
 # 涂鸦门禁 SDK
 
-支持设备: his3516DV300
-
 ### 编译
 1. 进入 demo 文件夹，使用交叉编译工具，编译 ipc_demo
-2. 将编译结果 ipc_demo 推送到设备。`scp ipc_demo dv300:/mnt/mtd/demo/ipc_demo`
-3. 将 web_dist 推送到设备，重命名成dist，与 ipc_demo 同目录。`scp -r web_dist dv300:/mnt/mtd/demo/dist`
+2. 将编译结果 ipc_demo 推送到设备。`scp ipc_demo dev:/mnt/mtd/demo/ipc_demo`
+3. 将 web_dist 推送到设备，重命名成dist，与 ipc_demo 同目录。`scp -r web_dist dev:/mnt/mtd/demo/dist`
 4. 启动 ipc_demo
 5. 通过网页访问 http:\\\\{device_ip}:8000 使用 demo 功能
 
