@@ -128,9 +128,9 @@ restApi::restApi() : ws_nc(nullptr) {
     realpath(basePath, apath);
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
-    acs_env.pid = buildStr("529u4yfk8znie2d6");
-    acs_env.uuid = buildStr("tuyab2a3a420b1e4cafd");
-    acs_env.pkey = buildStr("wpKv7HcNxgV9NNrOVa7g835Hwtw8Goo7");
+    acs_env.pid = buildStr("LADsjFCD7f0CshAE");
+    acs_env.uuid = buildStr("shkzb840623e56f79c6b");
+    acs_env.pkey = buildStr("xNMusctORGuvnYfXo0v4j1bcTZNe3sIr");
 
     acs_env.dbKey = buildStr("aflajdsfj");
     acs_env.dbKdfIter = 1000;

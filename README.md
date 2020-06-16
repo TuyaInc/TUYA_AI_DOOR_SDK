@@ -91,10 +91,9 @@ web_dist: demo 网页
 ### Version: 1.0.22
 	1. 修改 TUYA_DP_CALLBACK 返回 为 int
 	
-
-
-
-
+### Version: 1.0.23
+	1. 修复由于class实例被释放后继续使用造成的崩溃。发生在exit() 函数调用时
+	
 
 
 
