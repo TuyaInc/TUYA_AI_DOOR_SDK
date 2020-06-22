@@ -95,8 +95,8 @@ web_dist: demo 网页
 	1. 修复由于class实例被释放后继续使用造成的崩溃。发生在exit() 函数调用时
 
 ### Version: 1.0.24
-	1. 修复 demo 崩溃：由于 exit 前没有停止 thread pool 引起的crash
-	2. 修复 demo 奔溃：mg_send_websocket_frame 不支持多线程，在调用前加锁
+	1. 修复 demo crash：由于 exit 前没有停止 thread pool 引起的crash
+	2. 修复 demo crash：mg_send_websocket_frame 不支持多线程，在调用前加锁
 	
 
 
