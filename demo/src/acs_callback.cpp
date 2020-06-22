@@ -185,6 +185,7 @@ void cb_device_event_call(DeviceEvent event) {
             break;
         case RESET:
             printf("\n************************ device reset ***************************\n");
+            acs_ctx->stopServer();
             exit(0);
             break;
     }

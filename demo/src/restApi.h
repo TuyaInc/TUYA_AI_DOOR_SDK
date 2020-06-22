@@ -21,6 +21,7 @@ public:
 
     void sendWsMsg(const char *msg);
 
+    void stopServer();
 
     ActivateEnv acs_env{0};
 private:

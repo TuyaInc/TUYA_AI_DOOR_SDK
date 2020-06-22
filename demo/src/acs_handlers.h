@@ -45,5 +45,7 @@ char *buildStr(std::string str);
 
 void init_acs_after_activated(restApi *thiz, int ret);
 
+void stopHandle();
+
 
 #endif //AI_PAD_SDK_ACS_HANDLERS_H
