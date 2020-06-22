@@ -205,8 +205,9 @@ void init_acs_after_activated(restApi *thiz, int ret) {
         system(cmd);
         system("hwclock -w");
     }
-    printf("tuya::MediaTest::getInstance()->start()\n");
+
 #ifdef MEDIA_STREAM
+    printf("tuya::MediaTest::getInstance()->start()\n");
     tuya::MediaTest::getInstance()->start();
 #endif
 
@@ -316,7 +317,10 @@ static void deactivate_device(restApi *thiz) {
     thiz->sendWsMsg(s.GetString());
 
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    exit(0);
+}
+
+void stopHandle() {
+    pool.stop(true);
 }
 
 void handle_deactivate(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {

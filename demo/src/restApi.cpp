@@ -4,6 +4,8 @@
 
 #include <string>
 #include <tuya_ai_pad_sdk.h>
+#include <mutex>
+
 
 #include <map>
 #include <ifaddrs.h>
@@ -98,6 +100,10 @@ char *getMacAddress() {
     return mac;
 }
 
+void restApi::stopServer() {
+    stopHandle();
+}
+
 void queryDeviceInfo(ActivateEnv *env) {
     env->firmwareVersion = buildStr("1.0.0");
 
@@ -128,9 +134,9 @@ restApi::restApi() : ws_nc(nullptr) {
     realpath(basePath, apath);
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
-    acs_env.pid = buildStr("LADsjFCD7f0CshAE");
-    acs_env.uuid = buildStr("shkzb840623e56f79c6b");
-    acs_env.pkey = buildStr("xNMusctORGuvnYfXo0v4j1bcTZNe3sIr");
+    acs_env.pid = buildStr("529u4yfk8znie2d6");
+    acs_env.uuid = buildStr("tuyab2a3a420b1e4cafd");
+    acs_env.pkey = buildStr("wpKv7HcNxgV9NNrOVa7g835Hwtw8Goo7");
 
     acs_env.dbKey = buildStr("aflajdsfj");
     acs_env.dbKdfIter = 1000;
@@ -149,10 +155,12 @@ void restApi::setWebsocketsConnection(mg_connection *nc) {
     ws_nc = nc;
 }
 
+std::mutex sendLock;
 void restApi::sendWsMsg(const char *msg) {
     if (ws_nc == nullptr)
         return;
 
+    std::lock_guard<std::mutex> guard(sendLock);
     mg_send_websocket_frame(ws_nc, WEBSOCKET_OP_TEXT, msg, strlen(msg));
 }
 
