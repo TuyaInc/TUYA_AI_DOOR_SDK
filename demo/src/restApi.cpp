@@ -4,6 +4,8 @@
 
 #include <string>
 #include <tuya_ai_pad_sdk.h>
+#include <mutex>
+
 
 #include <map>
 #include <ifaddrs.h>
@@ -162,10 +164,12 @@ void restApi::setWebsocketsConnection(mg_connection *nc) {
     ws_nc = nc;
 }
 
+std::mutex sendLock;
 void restApi::sendWsMsg(const char *msg) {
     if (ws_nc == nullptr)
         return;
 
+    std::lock_guard<std::mutex> guard(sendLock);
     mg_send_websocket_frame(ws_nc, WEBSOCKET_OP_TEXT, msg, strlen(msg));
 }
 
