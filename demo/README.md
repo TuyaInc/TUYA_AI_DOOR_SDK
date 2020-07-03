@@ -21,12 +21,12 @@
 1. 设备必须注册上云端才能实现多媒体推送，默认同时开启音频和视频推送
 2. 只要开启了媒体推送，设备会持续推送音视频到云端，不管涂鸦智能app是否连接上设备，暂未实现关闭推送功能
 3. 多媒体推送开发
-  1. 配置多媒体推送参数：ty_media_set_video_resolution/ty_media_set_frame_rate
-    1. 如果不设置参数，默认视频帧率25，主码流12980*720，辅码流128*128；音频帧率25
-    2. 不可设置参数，推送音频格式pcm/8k/8bit/mono，视频比特率主码流1M，辅码流512K
-  2. 开启推送模块ty_start_media
-  3. 开始推送多媒体ty_push_media_audio/ty_push_media_video
-  4. 涂鸦智能app喊话声音会在ty_media_set_audio_call_back设置的回调函数中，上层应用可以做相应操作
+    1. 配置多媒体推送参数：ty_media_set_video_resolution/ty_media_set_frame_rate
+        1. 如果不设置参数，默认视频帧率25，主码流12980*720，辅码流128*128；音频帧率25
+        2. 不可设置参数，推送音频格式pcm/8k/8bit/mono，视频比特率主码流1M，辅码流512K
+    2. 开启推送模块ty_start_media
+    3. 开始推送多媒体ty_push_media_audio/ty_push_media_video
+    4. 涂鸦智能app喊话声音会在ty_media_set_audio_call_back设置的回调函数中，上层应用可以做相应操作
 4. 视频推送接口ty_push_media_video只支持idr和P帧推送，h264编码格式的视频帧需要组装好后下发到sdk，详见media_test.cpp
 
 ### 可能出现的问题
