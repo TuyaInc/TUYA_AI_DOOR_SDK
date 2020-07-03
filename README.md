@@ -97,6 +97,12 @@ web_dist: demo 网页
 ### Version: 1.0.24
 	1. 修复 demo crash：由于 exit 前没有停止 thread pool 引起的crash
 	2. 修复 demo crash：mg_send_websocket_frame 不支持多线程，在调用前加锁
+
+### Version: 1.0.25
+	1. 增加涂鸦智能app音视频推送配置，设置分辨率/码率
+	2. 增加设备音频推送涂鸦智能app功能
+	3. 增加主辅码流视频推送到涂鸦智能app功能
+	3. 实现设备和涂鸦智能app语音双向对讲功能（需要在app端开启双向对讲功能）
 	
 
 

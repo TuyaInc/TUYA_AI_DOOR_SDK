@@ -205,9 +205,8 @@ void init_acs_after_activated(restApi *thiz, int ret) {
         system(cmd);
         system("hwclock -w");
     }
-
-#ifdef MEDIA_STREAM
     printf("tuya::MediaTest::getInstance()->start()\n");
+#ifdef MEDIA_STREAM
     tuya::MediaTest::getInstance()->start();
 #endif
 

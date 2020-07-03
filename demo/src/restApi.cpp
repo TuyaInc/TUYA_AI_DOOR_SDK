@@ -4,8 +4,6 @@
 
 #include <string>
 #include <tuya_ai_pad_sdk.h>
-#include <mutex>
-
 
 #include <map>
 #include <ifaddrs.h>
@@ -13,7 +11,6 @@
 
 #include "restApi.h"
 #include "acs_handlers.h"
-
 
 typedef void(*requestFn)(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
 
@@ -134,9 +131,19 @@ restApi::restApi() : ws_nc(nullptr) {
     realpath(basePath, apath);
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
-    acs_env.pid = buildStr("529u4yfk8znie2d6");
-    acs_env.uuid = buildStr("tuyab2a3a420b1e4cafd");
-    acs_env.pkey = buildStr("wpKv7HcNxgV9NNrOVa7g835Hwtw8Goo7");
+
+    // acs_env.pid = buildStr("529u4yfk8znie2d6");
+    // acs_env.uuid = buildStr("tuyab2a3a420b1e4cafd");
+    // acs_env.pkey = buildStr("wpKv7HcNxgV9NNrOVa7g835Hwtw8Goo7");
+
+
+    acs_env.pid = buildStr("hj97zofbz9thvsh6");
+    acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
+    acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
+
+    printf("acs_env.pid  = %s\n",acs_env.pid);
+    printf("acs_env.uuid  = %s\n",acs_env.uuid);
+    printf("acs_env.pkey  = %s\n",acs_env.pkey);
 
     acs_env.dbKey = buildStr("aflajdsfj");
     acs_env.dbKdfIter = 1000;
@@ -155,12 +162,10 @@ void restApi::setWebsocketsConnection(mg_connection *nc) {
     ws_nc = nc;
 }
 
-std::mutex sendLock;
 void restApi::sendWsMsg(const char *msg) {
     if (ws_nc == nullptr)
         return;
 
-    std::lock_guard<std::mutex> guard(sendLock);
     mg_send_websocket_frame(ws_nc, WEBSOCKET_OP_TEXT, msg, strlen(msg));
 }
 
