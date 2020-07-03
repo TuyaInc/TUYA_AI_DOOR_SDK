@@ -35,12 +35,12 @@ bool ty_push_media_audio(const unsigned char* mic, int buflen, const unsigned ch
 
 /**
  * 推送视频媒体流，请先运行ty_start_media
- * @param type        码流类型：主码流/辅码流
+ * @param type        码流类型：目前只提供主码流/辅码流两路视频流
  * @param buf         媒体缓存
  * @param buflen      媒体缓存大小
  * @return            true:成功;false:失败
  */
-bool ty_push_media_video(int type, const unsigned char* buf, int buflen);
+bool ty_push_media_video(MediaVideoType type, const unsigned char* buf, int buflen);
 
 /*
  * 配置媒体信息，设置视频主辅码流分辨率

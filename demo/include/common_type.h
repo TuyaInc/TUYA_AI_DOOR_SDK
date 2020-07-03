@@ -112,12 +112,4 @@ enum MediaVideoType {
     emMediaVideoTypeCount
 };
 
-enum MediaAudioType {
-    emMediaAudioTypeMain = 9,
-    emMediaAudioTypeSub1,
-    emMediaAudioTypeSub2,
-    emMediaAudioTypeSub3,
-    emMediaAudioTypeCount
-};
-
 #endif //AI_PAD_SDK_COMMON_TYPE_H
