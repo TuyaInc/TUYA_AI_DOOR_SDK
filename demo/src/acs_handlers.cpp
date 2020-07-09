@@ -458,6 +458,8 @@ void handle_get_all_member(restApi *thiz, struct mg_connection *nc, struct http_
         writer.String(m->ruleIds);
         writer.Key("avatarPath");
         writer.String(m->avatarPath);
+        writer.Key("gender");
+        writer.Int(m->gender);
         writer.EndObject();
     }
 
@@ -600,7 +602,6 @@ void handle_get_member_by_id(restApi *thiz, struct mg_connection *nc, struct htt
     writer.StartObject();
     writer.Key("member");
     writer.StartObject();
-
     writer.Key("uid");
     writer.String(m->uid);
     writer.Key("name");
@@ -611,7 +612,8 @@ void handle_get_member_by_id(restApi *thiz, struct mg_connection *nc, struct htt
     writer.String(m->ruleIds);
     writer.Key("avatarPath");
     writer.String(m->avatarPath);
-
+    writer.Key("gender");
+    writer.Int(m->gender);
     writer.EndObject();
     writer.EndObject();
 

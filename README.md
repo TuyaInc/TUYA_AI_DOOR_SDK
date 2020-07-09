@@ -98,6 +98,8 @@ web_dist: demo 网页
 	1. 修复 demo crash：由于 exit 前没有停止 thread pool 引起的crash
 	2. 修复 demo crash：mg_send_websocket_frame 不支持多线程，在调用前加锁
 	
+### Version: 1.0.25
+	1. 添加 Member Gender 信息支持， Visitor 依旧不支持Gender，系统中没有Visitor 性别信息
 
 
 

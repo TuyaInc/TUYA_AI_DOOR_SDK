@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.0.24"
+#define TY_SDK_VERSION "1.0.25"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -44,7 +44,9 @@ struct Member {
     char *workNo;
     char *ruleIds;
     char *avatarPath;
+    int gender; // GENDER_UNKNOWN,GENDER_FEMALE,GENDER_MALE
 };
+
 
 struct Visitor {
     char *uid;
