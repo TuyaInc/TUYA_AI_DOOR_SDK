@@ -99,7 +99,7 @@ web_dist: demo 网页
 	2. 修复 demo crash：mg_send_websocket_frame 不支持多线程，在调用前加锁
 	
 ### Version: 1.0.25
-	1. 添加 Member Gender 信息支持， Visitor 依旧不支持Gender，系统中没有Visitor 性别信息
+	1. 添加 Member Gender 信息支持(GENDER_UNKNOWN,GENDER_FEMALE,GENDER_MALE)， Visitor 依旧不支持Gender，系统中没有Visitor 性别信息
 
 
 
