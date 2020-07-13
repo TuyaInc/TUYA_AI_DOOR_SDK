@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.0.25"
+#define TY_SDK_VERSION "1.0.26"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -151,13 +151,15 @@ typedef void(*SYNC_STATUS_CHANGE_CALLBACK)(int status, char *msg);
  *              USER_STATUS_MODIFY
  *              USER_STATUS_REMOVE
  *
+ * @param data type为 FACE_TYPE_VISITOR 时 指针类型是 Visitor *;  type 为 FACE_TYPE_MEMBER 时 指针类型时 Member *
+ *
  * @return 人脸注册处理结果
  *             FACE_DATA_ERR_SUCCESS
  *             FACE_DATA_ERR_DOWNLOAD
  *             FACE_DATA_ERR_REGISTER
  *             FACE_DATA_ERR_INFO
  */
-typedef int(*SYNC_FACE_DATA_CHANGE_CALLBACK)(char *uid, char *name, char *avatarPath, int type, int status);
+typedef int(*SYNC_FACE_DATA_CHANGE_CALLBACK)(char *uid, char *name, char *avatarPath, int type, int status, void *data);
 
 /**
  * 获取DP回调

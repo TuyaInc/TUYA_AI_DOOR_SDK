@@ -119,7 +119,7 @@ void cb_rule_status(int status, char *msg) {
     acs_ctx->sendWsMsg(s.GetString());
 }
 
-int cb_face_data_change(char *uid, char *name, char *avatarPath, int type, int status) {
+int cb_face_data_change(char *uid, char *name, char *avatarPath, int type, int status, void *data) {
     if (acs_ctx == nullptr) return FACE_DATA_ERR_REGISTER;
 
     rapidjson::StringBuffer s;
@@ -152,6 +152,26 @@ int cb_face_data_change(char *uid, char *name, char *avatarPath, int type, int s
             break;
         default:
             writer.String("unknown user status");
+    }
+
+    if (type == USER_TYPE_VISITOR) {
+        writer.Key("user_type");
+        writer.String("Visitor");
+
+        if (data) {
+            auto v = (Visitor *) data;
+            writer.Key("allowedDate");
+            writer.String(v->allowedDate);
+        }
+    } else if (type == USER_TYPE_MEMBER) {
+        writer.Key("user_type");
+        writer.String("Member");
+
+        if (data) {
+            auto m = (Member *) data;
+            writer.Key("gender");
+            writer.Int(m->gender);
+        }
     }
 
     writer.EndObject();

@@ -100,6 +100,9 @@ web_dist: demo 网页
 	
 ### Version: 1.0.25
 	1. 添加 Member Gender 信息支持(GENDER_UNKNOWN,GENDER_FEMALE,GENDER_MALE)， Visitor 依旧不支持Gender，系统中没有Visitor 性别信息
+	
+### Version: 1.0.26
+	1. SYNC_FACE_DATA_CHANGE_CALLBACK callback 添加 Member/Visitor 详情信息，需要根据 type 转换成对应类型
 
 
 
