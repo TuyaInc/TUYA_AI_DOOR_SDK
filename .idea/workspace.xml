@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a5cefcdc-022c-46fe-b9d0-99ae1062b1ab" name="Default Changelist" comment="update static library">
+      <change afterPath="$PROJECT_DIR$/.idea/TUYA_AI_DOOR_SDK.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_dist/static/css/chunk-654c4dc4.b86a7c30.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_dist/static/js/app.35b349de.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-654c4dc4.0072cc00.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/include/tuya_ai_pad_sdk.h" beforeDir="false" afterPath="$PROJECT_DIR$/demo/include/tuya_ai_pad_sdk.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/lib/liball_static.a" beforeDir="false" afterPath="$PROJECT_DIR$/demo/lib/liball_static.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/acs_handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/acs_handlers.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/css/chunk-a6192bdc.3de258ac.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/app.f3530906.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-07dea663.4a0181b0.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-07dea663.965674bb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-0cf3839e.b0934050.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-0cf3839e.f00a167b.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-118c0d47.eb6fb9b7.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-118c0d47.e0eb9773.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-1ae78a1a.377edb05.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-1ae78a1a.36eb95f7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-1f21309d.919ee793.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-1f21309d.90e50ed4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-262a480c.e6f17c2d.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-262a480c.303e8f4c.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2731b705.a2c04e37.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2731b705.00303120.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d0c8bf7.f60c6757.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d0c8bf7.4a42347c.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d0e4e1f.b5a6490f.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d0e4e1f.9e8f50e1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d0e944c.5fb3519d.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d0e944c.c9f58ef7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d20f537.afff22a4.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d20f537.663feb0b.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d2104c6.d8e41d61.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d2104c6.a645f2fa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d210b83.69b03711.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d210b83.af6295e1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d226cab.96a06060.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d226cab.1a3811b5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-2d229205.a1a0d0df.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-2d229205.ff38b261.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-30ca8599.4af41856.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-30ca8599.ef94b55e.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-31b9cda4.9d55864c.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-31b9cda4.a4a3a2b7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-34b659ec.d08764d6.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-34b659ec.a627f054.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-3cdc8938.798a9be1.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-3cdc8938.60320e9d.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-5390c43f.57505e56.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-5390c43f.205bfd22.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-5601f8f4.4e2e0913.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-5601f8f4.8a7f72ee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-5deaaffa.c19f0a40.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-5deaaffa.360da024.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-6ade1460.53f03c71.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-6ade1460.e059b6b7.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-738b70e2.bcd98f38.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-738b70e2.c189a076.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-74926326.07808dd9.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-74926326.fa059489.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-79b62882.472512cd.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-79b62882.d088840e.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-7a8911e6.09aa342b.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-7a8911e6.07c0d2a2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-9327e1a4.9a08536d.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-9327e1a4.092fc501.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-a6192bdc.bc7cf259.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-ab072dd2.13fedb02.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-ab072dd2.6891e64b.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-dda16dac.26316732.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-dda16dac.d1d9ba65.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-efbd270c.6f6ade00.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-efbd270c.3e404fa2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-f69872ee.ee15abe0.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-f69872ee.b7e46283.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_dist/static/js/chunk-libs.3cc7339d.js" beforeDir="false" afterPath="$PROJECT_DIR$/web_dist/static/js/chunk-libs.97374db2.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1dNwTsRg7MhWYL3y9zbUl3j1cHw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5cefcdc-022c-46fe-b9d0-99ae1062b1ab" name="Default Changelist" comment="" />
+      <created>1592278869416</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592278869416</updated>
+      <workItem from="1592278871978" duration="1381000" />
+      <workItem from="1592288671444" duration="223000" />
+      <workItem from="1592794093661" duration="630000" />
+      <workItem from="1594291133498" duration="680000" />
+      <workItem from="1594626245743" duration="856000" />
+      <workItem from="1594779473463" duration="2552000" />
+      <workItem from="1594799925986" duration="295000" />
+    </task>
+    <task id="LOCAL-00001" summary="publish">
+      <created>1592279073412</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279073412</updated>
+    </task>
+    <task id="LOCAL-00002" summary="publish">
+      <created>1592279079185</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279079185</updated>
+    </task>
+    <task id="LOCAL-00003" summary="modify gitignore">
+      <created>1592279215020</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279215020</updated>
+    </task>
+    <task id="LOCAL-00004" summary="publish">
+      <created>1592279269804</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279269804</updated>
+    </task>
+    <task id="LOCAL-00005" summary="publish 1.0.23">
+      <created>1592279543668</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279543668</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf support">
+      <created>1592279614184</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279614184</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf support">
+      <created>1592279650443</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1592279650443</updated>
+    </task>
+    <task id="LOCAL-00008" summary="remove dv300 in docs">
+      <created>1592288732479</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1592288732479</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix demo crash">
+      <created>1592794239212</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1592794239212</updated>
+    </task>
+    <task id="LOCAL-00010" summary="merge">
+      <created>1592794436644</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1592794436644</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix: spell error">
+      <created>1592794548981</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1592794548981</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix: spell error">
+      <created>1592794644936</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1592794644936</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add member gender support">
+      <created>1594291248469</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1594291248469</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add gender define on readme">
+      <created>1594291629747</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1594291629747</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add member/visitor info on onFaceDataChange callback">
+      <created>1594626383754</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1594626383754</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix: crash cause by mongoose websocket msg and http msg  multithread competition">
+      <created>1594780227444</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1594780227444</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update static library">
+      <created>1594780695716</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1594780695716</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modify gitignore" />
+    <MESSAGE value="publish" />
+    <MESSAGE value="publish 1.0.23" />
+    <MESSAGE value="add gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf support" />
+    <MESSAGE value="remove dv300 in docs" />
+    <MESSAGE value="fix demo crash" />
+    <MESSAGE value="merge" />
+    <MESSAGE value="fix: spell error" />
+    <MESSAGE value="add member gender support" />
+    <MESSAGE value="add gender define on readme" />
+    <MESSAGE value="add member/visitor info on onFaceDataChange callback" />
+    <MESSAGE value="fix: crash cause by mongoose websocket msg and http msg  multithread competition" />
+    <MESSAGE value="update static library" />
+    <option name="LAST_COMMIT_MESSAGE" value="update static library" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="302" y="164" key="CommitChangelistDialog2" timestamp="1594800067045">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="302" y="164" key="CommitChangelistDialog2/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1594800067045" />
+    <state x="100" y="123" width="1240" height="677" key="DiffContextDialog" timestamp="1594780106216">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="100" y="123" width="1240" height="677" key="DiffContextDialog/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1594780106216" />
+    <state x="144" y="100" key="MergeDialog" timestamp="1592794313761">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="144" y="100" key="MergeDialog/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1592794313761" />
+    <state x="431" y="184" key="MultipleFileMergeDialog" timestamp="1594780260541">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="431" y="184" key="MultipleFileMergeDialog/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1594780260541" />
+    <state x="502" y="179" key="RollbackChangesDialog" timestamp="1592794203227">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="502" y="179" key="RollbackChangesDialog/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1592794203227" />
+    <state x="221" y="100" key="SettingsEditor" timestamp="1592278920480">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="221" y="100" key="SettingsEditor/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1592278920480" />
+    <state x="100" y="123" width="1240" height="677" key="ShowDiffWithBranchDialog" timestamp="1592279639092">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="100" y="123" width="1240" height="677" key="ShowDiffWithBranchDialog/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1592279639092" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1594800135803">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1594800135803" />
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2" timestamp="1594780947702">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="201" key="Vcs.Push.Dialog.v2/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1594780947702" />
+    <state x="503" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1594626251501">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="503" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1594626251501" />
+    <state x="466" y="181" key="git4idea.branch.GitSmartOperationDialog" timestamp="1592279485690">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="466" y="181" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.877/452.-1057.1920.1057@0.23.1440.877" timestamp="1592279485690" />
+  </component>
+</project>

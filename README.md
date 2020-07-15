@@ -105,6 +105,11 @@ web_dist: demo 网页
 	1. SYNC_FACE_DATA_CHANGE_CALLBACK callback 添加 Member/Visitor 详情信息，需要根据 type 转换成对应类型
 	2. 修复 websocket send msg 和 http handle msg 多线程处理造成的 crash，通过mg_start_thread 启动 websocket msg 推送线程，mongoose 内部避免多线程竞争
 
+### Version: 1.0.27
+	1. `ty_get_all_visitor_info` 和 `ty_get_all_member_info` 添加 offset limit
+	2. demo web page 使用 page load 的方式， 以防人脸数据过大造成页面卡住
+	
+
 
 
 
