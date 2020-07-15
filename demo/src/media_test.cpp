@@ -35,6 +35,8 @@ void audiocallback(const void* buf, int len, int rate, int databits, int channel
 namespace tuya
 {
     #define AUDIO_FRAME_SIZE 640
+    #define I_FRAME_SIZE (1280*720*3/2)
+    #define I_FRAME_SIZE_SUB (600*480*3/2)
     MediaTest::MediaTest()
     {
         printf("MediaTest::MediaTest()\n");
@@ -195,11 +197,12 @@ namespace tuya
 
         std::thread myvideo([&]
         {
-            int times = 20;
-            unsigned char* m_idrbuf;
-            while(times-- > 0)
+            int times = 0;
+            unsigned char idrframe[I_FRAME_SIZE] = {0};
+            unsigned char pframe[I_FRAME_SIZE] = {0};
+            while(1)
             {
-                printf("video main replay times left = %d,size = %d\n",times,sizevideo);
+                printf("video main replay times left = %d,size = %d\n",times++,sizevideo);
                 unsigned int start = 0;
                 IDRPositon idrposition;
                 while(start < sizevideo)
@@ -208,10 +211,8 @@ namespace tuya
                     getH264HeaderPos(filevideobuf, sizevideo, start, &frame);
                     if(frame.position.head == -1)
                     {
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                        }
+                        memset(idrframe,0,I_FRAME_SIZE);
+                        memset(pframe,0,I_FRAME_SIZE);
                         break;
                     }
                     frame.size = frame.position.data - frame.position.head + 1;
@@ -230,38 +231,23 @@ namespace tuya
                     {
                         idrposition.idrpos = frame.position.head;
                         idrposition.idrlen = frame.size;
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                        }
-                        m_idrbuf = (BYTE_T*)malloc(idrposition.spslen + idrposition.ppslen + idrposition.idrlen);
-
                         if(idrposition.spslen > 0)
                         {
-                            memcpy(m_idrbuf,filevideobuf + idrposition.spspos,idrposition.spslen);
+                            memcpy(idrframe,filevideobuf + idrposition.spspos,idrposition.spslen);
                         }
                         if(idrposition.ppslen > 0)
                         {
-                            memcpy(m_idrbuf + idrposition.spslen,filevideobuf + idrposition.ppspos,idrposition.ppslen);
+                            memcpy(idrframe + idrposition.spslen,filevideobuf + idrposition.ppspos,idrposition.ppslen);
                         }
-                        memcpy(m_idrbuf + idrposition.spslen + idrposition.ppslen,filevideobuf + idrposition.idrpos,idrposition.idrlen);
-                        ty_push_media_video(emMediaVideoTypeMain,m_idrbuf,frame.size);
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                            m_idrbuf = nullptr;
-                        }
+                        memcpy(idrframe + idrposition.spslen + idrposition.ppslen,filevideobuf + idrposition.idrpos,idrposition.idrlen);
+                        ty_push_media_video(emMediaVideoTypeMain,idrframe,frame.size);
+                        memset(idrframe,0,I_FRAME_SIZE);
                     }
                     else if(frame.type == MediaTest::Frame::FrameType::emFrameTypeP)
                     {
-                        m_idrbuf = (BYTE_T*)malloc(frame.size);
-                        memcpy(m_idrbuf,filevideobuf + frame.position.head,frame.size);
-                        ty_push_media_video(emMediaVideoTypeMain, m_idrbuf,frame.size);
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                            m_idrbuf = nullptr;
-                        }
+                        memcpy(pframe,filevideobuf + frame.position.head,frame.size);
+                        ty_push_media_video(emMediaVideoTypeMain, pframe,frame.size);
+                        memset(pframe,0,I_FRAME_SIZE);
                     }
                     start = frame.position.data;
                 }
@@ -271,11 +257,12 @@ namespace tuya
 
         std::thread myvideosub([&]
         {
-            int times = 20;
-            unsigned char* m_idrbuf;
-            while(times-- > 0)
+            int times = 0;
+            unsigned char idrframe[I_FRAME_SIZE_SUB] = {0};
+            unsigned char pframe[I_FRAME_SIZE_SUB] = {0};
+            while(1)
             {
-                printf("video sub replay times left = %d,size = %d\n",times,sizevideosub);
+                printf("video sub replay times left = %d,size = %d\n",times++,sizevideosub);
                 unsigned int start = 0;
                 IDRPositon idrposition;
                 while(start < sizevideosub)
@@ -284,10 +271,8 @@ namespace tuya
                     getH264HeaderPos(filevideobufsub, sizevideosub, start, &frame);
                     if(frame.position.head == -1)
                     {
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                        }
+                        memset(idrframe,0,I_FRAME_SIZE_SUB);
+                        memset(pframe,0,I_FRAME_SIZE_SUB);
                         break;
                     }
                     frame.size = frame.position.data - frame.position.head + 1;
@@ -306,38 +291,23 @@ namespace tuya
                     {
                         idrposition.idrpos = frame.position.head;
                         idrposition.idrlen = frame.size;
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                        }
-                        m_idrbuf = (BYTE_T*)malloc(idrposition.spslen + idrposition.ppslen + idrposition.idrlen);
-
                         if(idrposition.spslen > 0)
                         {
-                            memcpy(m_idrbuf,filevideobufsub + idrposition.spspos,idrposition.spslen);
+                            memcpy(idrframe,filevideobufsub + idrposition.spspos,idrposition.spslen);
                         }
                         if(idrposition.ppslen > 0)
                         {
-                            memcpy(m_idrbuf + idrposition.spslen,filevideobufsub + idrposition.ppspos,idrposition.ppslen);
+                            memcpy(idrframe + idrposition.spslen,filevideobufsub + idrposition.ppspos,idrposition.ppslen);
                         }
-                        memcpy(m_idrbuf + idrposition.spslen + idrposition.ppslen,filevideobufsub + idrposition.idrpos,idrposition.idrlen);
-                        ty_push_media_video(emMediaVideoTypeSub1,m_idrbuf,frame.size);
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                            m_idrbuf = nullptr;
-                        }
+                        memcpy(idrframe + idrposition.spslen + idrposition.ppslen,filevideobufsub + idrposition.idrpos,idrposition.idrlen);
+                        ty_push_media_video(emMediaVideoTypeSub1,idrframe,frame.size);
+                        memset(idrframe,0,I_FRAME_SIZE_SUB);
                     }
                     else if(frame.type == MediaTest::Frame::FrameType::emFrameTypeP)
                     {
-                        m_idrbuf = (BYTE_T*)malloc(frame.size);
-                        memcpy(m_idrbuf,filevideobufsub + frame.position.head,frame.size);
-                        ty_push_media_video(emMediaVideoTypeSub1, m_idrbuf,frame.size);
-                        if(m_idrbuf != nullptr)
-                        {
-                            free(m_idrbuf);
-                            m_idrbuf = nullptr;
-                        }
+                        memcpy(pframe,filevideobufsub + frame.position.head,frame.size);
+                        ty_push_media_video(emMediaVideoTypeSub1, pframe,frame.size);
+                        memset(pframe,0,I_FRAME_SIZE_SUB);
                     }
                     start = frame.position.data;
                 }
@@ -347,13 +317,13 @@ namespace tuya
         
         std::thread myaudio([&]
         {
-            int times = 30;
+            int times = 0;
             #define  NN 640
             char spk[NN];
             char mic[NN];
-            while(times-- > 0)
+            while(1)
             {
-                printf("audio replay times left = %d,mic len = %d,spk len = %d\n",times,sizeaudiomic,sizeaudiospk);
+                printf("audio replay times left = %d,mic len = %d,spk len = %d\n",times++,sizeaudiomic,sizeaudiospk);
                 unsigned int offset = 0;
                 while (offset < sizeaudiomic)
                 {
@@ -374,6 +344,7 @@ namespace tuya
             printf("ty_stop_mediaty_stop_media\n");
         });
         myaudio.detach();
+    
     }
 }
 

@@ -14,6 +14,7 @@
 #include "restApi.h"
 #include "acs_handlers.h"
 
+
 typedef void(*requestFn)(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
 
 std::map<std::string, requestFn> requestApis = {
@@ -134,14 +135,13 @@ restApi::restApi() : ws_nc(nullptr) {
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
 
-    // acs_env.pid = buildStr("529u4yfk8znie2d6");
-    // acs_env.uuid = buildStr("tuyab2a3a420b1e4cafd");
-    // acs_env.pkey = buildStr("wpKv7HcNxgV9NNrOVa7g835Hwtw8Goo7");
+    // acs_env.pid = buildStr("wauichsp84htijtv");
+    // acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
+    // acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
 
-
-    acs_env.pid = buildStr("hj97zofbz9thvsh6");
-    acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
-    acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
+    acs_env.pid = buildStr("8krgasdila00tmqx");
+    acs_env.uuid = buildStr("tuya82cd807d9f1bbb2f");
+    acs_env.pkey = buildStr("klCa1goCO7JB9ON0mf5wWtDeE1iDGhu7");
 
     printf("acs_env.pid  = %s\n",acs_env.pid);
     printf("acs_env.uuid  = %s\n",acs_env.uuid);
