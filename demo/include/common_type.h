@@ -80,6 +80,10 @@ typedef struct {
 #define PROP_ENUM 3
 #define PROP_BOOL 0
 
+#define GENDER_UNKNOWN -1
+#define GENDER_FEMALE 0
+#define GENDER_MALE 1
+
 
 typedef char CHAR_T;
 typedef unsigned int UINT_T;

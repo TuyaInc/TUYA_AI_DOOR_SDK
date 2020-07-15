@@ -433,10 +433,13 @@ void handle_get_device_detail(restApi *thiz, struct mg_connection *nc, struct ht
 
 
 void handle_get_all_member(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
+    printf("handle_get_all_member \n");
     Member *p = nullptr;
     uint32_t size = 0;
+    auto start = std::chrono::high_resolution_clock::now();
     ty_get_all_member_info(&p, &size);
-
+    auto end = std::chrono::high_resolution_clock::now();
+    printf("handle_get_all_member size %d, cost %lld\n", size, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
@@ -458,6 +461,8 @@ void handle_get_all_member(restApi *thiz, struct mg_connection *nc, struct http_
         writer.String(m->ruleIds);
         writer.Key("avatarPath");
         writer.String(m->avatarPath);
+        writer.Key("gender");
+        writer.Int(m->gender);
         writer.EndObject();
     }
 
@@ -600,7 +605,6 @@ void handle_get_member_by_id(restApi *thiz, struct mg_connection *nc, struct htt
     writer.StartObject();
     writer.Key("member");
     writer.StartObject();
-
     writer.Key("uid");
     writer.String(m->uid);
     writer.Key("name");
@@ -611,7 +615,8 @@ void handle_get_member_by_id(restApi *thiz, struct mg_connection *nc, struct htt
     writer.String(m->ruleIds);
     writer.Key("avatarPath");
     writer.String(m->avatarPath);
-
+    writer.Key("gender");
+    writer.Int(m->gender);
     writer.EndObject();
     writer.EndObject();
 
