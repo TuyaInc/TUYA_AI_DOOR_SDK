@@ -103,6 +103,7 @@ web_dist: demo 网页
 	
 ### Version: 1.0.26
 	1. SYNC_FACE_DATA_CHANGE_CALLBACK callback 添加 Member/Visitor 详情信息，需要根据 type 转换成对应类型
+	2. 修复 websocket send msg 和 http handle msg 多线程处理造成的 crash，通过mg_start_thread 启动 websocket msg 推送线程，mongoose 内部避免多线程竞争
 
 
 

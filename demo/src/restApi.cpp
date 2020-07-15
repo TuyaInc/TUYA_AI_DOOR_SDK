@@ -5,7 +5,8 @@
 #include <string>
 #include <tuya_ai_pad_sdk.h>
 #include <mutex>
-
+#include <queue>
+#include <condition_variable>
 
 #include <map>
 #include <ifaddrs.h>
@@ -155,13 +156,30 @@ void restApi::setWebsocketsConnection(mg_connection *nc) {
     ws_nc = nc;
 }
 
-std::mutex sendLock;
+
+std::mutex d_mutex;
+std::condition_variable d_condition;
+std::queue<std::string> d_queue;
+
 void restApi::sendWsMsg(const char *msg) {
-    if (ws_nc == nullptr)
+    if (ws_nc == nullptr || msg == nullptr)
         return;
 
-    std::lock_guard<std::mutex> guard(sendLock);
-    mg_send_websocket_frame(ws_nc, WEBSOCKET_OP_TEXT, msg, strlen(msg));
+    std::unique_lock<std::mutex> lock(d_mutex);
+    d_queue.push(msg);
+    d_condition.notify_one();
+}
+
+void restApi::handleWebSocketMsg() {
+    std::unique_lock<std::mutex> lock(d_mutex);
+    d_condition.wait_for(lock, std::chrono::milliseconds(200), [] { return !d_queue.empty(); });
+    if (d_queue.empty()) {
+        return;
+    }
+    auto msg = d_queue.front();
+    d_queue.pop();
+    mg_send_websocket_frame(ws_nc, WEBSOCKET_OP_TEXT, msg.data(), msg.size());
+
 }
 
 mg_connection *restApi::getWebsocketsConnection() {

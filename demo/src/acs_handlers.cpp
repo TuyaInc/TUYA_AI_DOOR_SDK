@@ -433,10 +433,13 @@ void handle_get_device_detail(restApi *thiz, struct mg_connection *nc, struct ht
 
 
 void handle_get_all_member(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
+    printf("handle_get_all_member \n");
     Member *p = nullptr;
     uint32_t size = 0;
+    auto start = std::chrono::high_resolution_clock::now();
     ty_get_all_member_info(&p, &size);
-
+    auto end = std::chrono::high_resolution_clock::now();
+    printf("handle_get_all_member size %d, cost %lld\n", size, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
 
