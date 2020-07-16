@@ -108,6 +108,12 @@ web_dist: demo 网页
 ### Version: 1.0.27
 	1. `ty_get_all_visitor_info` 和 `ty_get_all_member_info` 添加 offset limit
 	2. demo web page 使用 page load 的方式， 以防人脸数据过大造成页面卡住
+
+### Version: 1.0.28
+	1. 增加涂鸦智能app音视频推送配置，可设置分辨率/码率
+	2. 增加设备音频推送涂鸦智能app功能
+	3. 增加主辅码流视频推送到涂鸦智能app功能
+	4. 实现设备和涂鸦智能app语音双向对讲功能（需要在app端开启双向对讲功能）
 	
 
 

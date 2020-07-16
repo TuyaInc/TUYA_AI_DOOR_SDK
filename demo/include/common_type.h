@@ -116,5 +116,4 @@ enum MediaVideoType {
     emMediaVideoTypeCount
 };
 
-
 #endif //AI_PAD_SDK_COMMON_TYPE_H

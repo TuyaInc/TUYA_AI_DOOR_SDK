@@ -4,6 +4,12 @@ set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+add_definitions(
+    -DMEDIA_STREAM
+)
+
 add_executable(ipc_demo
         src/main.cpp
         src/mongoose.c
@@ -15,6 +21,7 @@ add_executable(ipc_demo
 
 include_directories(include)
 include_directories(third_party/include)
+include_directories(src)
 
 target_link_libraries(ipc_demo
         ${CMAKE_SOURCE_DIR}/lib/liball_static.a
