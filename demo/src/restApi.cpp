@@ -134,8 +134,6 @@ restApi::restApi() : ws_nc(nullptr) {
     realpath(basePath, apath);
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
-<<<<<<< HEAD
-
     // acs_env.pid = buildStr("wauichsp84htijtv");
     // acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
     // acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
@@ -147,11 +145,6 @@ restApi::restApi() : ws_nc(nullptr) {
     printf("acs_env.pid  = %s\n",acs_env.pid);
     printf("acs_env.uuid  = %s\n",acs_env.uuid);
     printf("acs_env.pkey  = %s\n",acs_env.pkey);
-=======
-    acs_env.pid = buildStr("wauichsp84htijtv");
-    acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
-    acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
->>>>>>> upstream/arm-himix200-linux
 
     acs_env.dbKey = buildStr("aflajdsfj");
     acs_env.dbKdfIter = 1000;
