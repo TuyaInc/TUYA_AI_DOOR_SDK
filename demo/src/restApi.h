@@ -5,7 +5,6 @@
 #ifndef AI_PAD_SDK_RESTAPI_H
 #define AI_PAD_SDK_RESTAPI_H
 
-
 #include "mongoose.h"
 
 class restApi {
@@ -22,6 +21,8 @@ public:
     void sendWsMsg(const char *msg);
 
     void stopServer();
+
+    void handleWebSocketMsg();
 
     ActivateEnv acs_env{0};
 private:

@@ -433,9 +433,30 @@ void handle_get_device_detail(restApi *thiz, struct mg_connection *nc, struct ht
 
 
 void handle_get_all_member(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
+    printf("handle_get_all_member \n");
+
+    int offset = 0;
+    int limit = 50;
+    if (hm->body.len > 0) {
+        rapidjson::Document d;
+        d.Parse(hm->body.p, hm->body.len);
+        if (d.HasParseError()) {
+            printf("parse error, body %s \n", hm->body.p);
+            return;
+        }
+
+
+        offset = getInt(d, "offset", -1);
+        limit = getInt(d, "limit", 50);
+    }
+
+
     Member *p = nullptr;
     uint32_t size = 0;
-    ty_get_all_member_info(&p, &size);
+    auto start = std::chrono::high_resolution_clock::now();
+    ty_get_all_member_info(&p, &size, offset, limit);
+    auto end = std::chrono::high_resolution_clock::now();
+    printf("handle_get_all_member size %d, cost %lld\n", size, std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
 
     rapidjson::StringBuffer s;
     rapidjson::Writer<rapidjson::StringBuffer> writer(s);
