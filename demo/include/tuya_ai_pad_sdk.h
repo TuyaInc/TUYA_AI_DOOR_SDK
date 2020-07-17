@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.0.24"
+#define TY_SDK_VERSION "1.0.28"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -44,7 +44,9 @@ struct Member {
     char *workNo;
     char *ruleIds;
     char *avatarPath;
+    int gender; // GENDER_UNKNOWN,GENDER_FEMALE,GENDER_MALE
 };
+
 
 struct Visitor {
     char *uid;
@@ -149,13 +151,15 @@ typedef void(*SYNC_STATUS_CHANGE_CALLBACK)(int status, char *msg);
  *              USER_STATUS_MODIFY
  *              USER_STATUS_REMOVE
  *
+ * @param data type为 FACE_TYPE_VISITOR 时 指针类型是 Visitor *;  type 为 FACE_TYPE_MEMBER 时 指针类型时 Member *
+ *
  * @return 人脸注册处理结果
  *             FACE_DATA_ERR_SUCCESS
  *             FACE_DATA_ERR_DOWNLOAD
  *             FACE_DATA_ERR_REGISTER
  *             FACE_DATA_ERR_INFO
  */
-typedef int(*SYNC_FACE_DATA_CHANGE_CALLBACK)(char *uid, char *name, char *avatarPath, int type, int status);
+typedef int(*SYNC_FACE_DATA_CHANGE_CALLBACK)(char *uid, char *name, char *avatarPath, int type, int status, void *data);
 
 /**
  * 获取DP回调
@@ -295,9 +299,11 @@ void ty_trigger_rule_sync(int full, int remove);
  * 获取全部 访客 数据
  * @param p 指向 数组 的指针， 不需要时，需要通过 free_visitor_info 释放
  * @param out_size 全部访客个数
+ * @param offset 查询偏移， offset 小于0 表示查询全部内容
+ * @param limit 最大输出结果数量
  * @return
  */
-void ty_get_all_visitor_info(Visitor **p, uint32_t *out_size);
+void ty_get_all_visitor_info(Visitor **p, uint32_t *out_size, int offset = -1, int limit = 50);
 
 /**
  * 通过 uid 获取访客信息
@@ -318,9 +324,11 @@ void ty_free_visitor_info(Visitor *p, uint32_t size);
  * 获取全部 成员 数据
  * @param p 指向 数组 的指针， 不需要时，需要通过 free_member_info 释放
  * @param out_size 全部成员个数
+ * @param offset 查询偏移， offset 小于0 表示查询全部内容
+ * @param limit 最大输出结果数量
  * @return
  */
-void ty_get_all_member_info(Member **p, uint32_t *out_size);
+void ty_get_all_member_info(Member **p, uint32_t *out_size, int offset = -1, int limit = 50);
 
 /**
  * 通过 uid 获取成员信息

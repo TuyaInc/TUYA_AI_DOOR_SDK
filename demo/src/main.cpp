@@ -62,6 +62,14 @@ static void ev_handler(struct mg_connection *nc, int ev, void *ev_data) {
     }
 }
 
+static void *websocket_worker(void *param) {
+    while (s_signal_received == 0) {
+        apiHandler->handleWebSocketMsg();
+    }
+
+    return nullptr;
+}
+
 struct file_writer_data {
     FILE *fp;
     size_t bytes_written;
@@ -142,6 +150,7 @@ int main(void) {
         return -1;
     }
     mg_set_protocol_http_websocket(nc);
+    mg_start_thread(websocket_worker, nc->mgr);
 
     mg_register_http_endpoint(nc, "/upload", handle_upload MG_UD_ARG(NULL));
 
@@ -154,8 +163,6 @@ int main(void) {
         mg_mgr_poll(&mgr, 200);
     }
     mg_mgr_free(&mgr);
-
-    exit(0);
 
     ty_free_sdk();
 
