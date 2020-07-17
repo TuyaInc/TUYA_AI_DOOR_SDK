@@ -135,7 +135,6 @@ restApi::restApi() : ws_nc(nullptr) {
     realpath(basePath, apath);
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
-
     // acs_env.pid = buildStr("wauichsp84htijtv");
     // acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
     // acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
@@ -172,7 +171,13 @@ std::queue<std::string> d_queue;
 
 void restApi::sendWsMsg(const char *msg) {
     if (ws_nc == nullptr || msg == nullptr)
+
         return;
+    }
+    auto msg = d_queue.front();
+    d_queue.pop();
+    mg_send_websocket_frame(ws_nc, WEBSOCKET_OP_TEXT, msg.data(), msg.size());
+
 
     std::unique_lock<std::mutex> lock(d_mutex);
     d_queue.push(msg);

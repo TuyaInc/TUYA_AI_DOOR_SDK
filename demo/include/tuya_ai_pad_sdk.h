@@ -12,7 +12,11 @@
 extern "C" {
 #endif
 
+<<<<<<< HEAD
 #define TY_SDK_VERSION "1.0.28"
+=======
+#define TY_SDK_VERSION "1.0.27"
+>>>>>>> upstream/gcc-linaro-5.4.1-2017.05-x86_64_arm-linux-gnueabihf
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
