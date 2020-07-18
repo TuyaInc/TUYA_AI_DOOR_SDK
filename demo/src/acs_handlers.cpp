@@ -4,6 +4,7 @@
 
 
 #include <tuya_ai_pad_sdk.h>
+#include <tuya_media_sdk.h>
 
 #ifdef MEDIA_STREAM
 #include "media_test.h"
@@ -207,8 +208,8 @@ void init_acs_after_activated(restApi *thiz, int ret) {
     }
 
 #ifdef MEDIA_STREAM
-    printf("tuya::MediaTest::getInstance()->start()\n");
-    tuya::MediaTest::getInstance()->start();
+    // printf("tuya::MediaTest::getInstance()->start()\n");
+    // tuya::MediaTest::getInstance()->start();
 #endif
 
     activating = false;
@@ -228,6 +229,55 @@ static void activate_device(restApi *thiz, bool remoteActivate = false) {
 
 }
 
+void handle_startmedia(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
+    printf("handle_startmedia\n");
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    bool ret = tuya::MediaTest::getInstance()->start();
+    writer.StartObject();
+    writer.Key("success");
+    writer.Bool(ret);
+    writer.EndObject();
+
+    SEND_HEADER
+    mg_printf_http_chunk(nc, "%s", s.GetString());
+    END_SEND
+}
+
+void handle_stopmedia(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
+    printf("handle_stopmedia\n");
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    bool ret = tuya::MediaTest::getInstance()->stop();
+
+    writer.StartObject();
+    writer.Key("success");
+    writer.Bool(ret);
+    writer.EndObject();
+
+    SEND_HEADER
+    mg_printf_http_chunk(nc, "%s", s.GetString());
+    END_SEND
+}
+
+void handle_getmediastate(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
+    printf("handle_getmediastate\n");
+    rapidjson::StringBuffer s;
+    rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+    auto ret = tuya::MediaTest::getInstance()->getMediaState();
+
+    writer.StartObject();
+    writer.Key("success");
+    writer.Int(ret);
+    writer.EndObject();
+
+    SEND_HEADER
+    mg_printf_http_chunk(nc, "%s", s.GetString());
+    END_SEND
+}
 
 void handle_activate(restApi *thiz, struct mg_connection *nc, struct http_message *hm) {
     rapidjson::StringBuffer s;

@@ -19,11 +19,21 @@ typedef void (*audio_call_back)(const void* buf, int len, int rate, int databits
 
 /**
  * 开启推送媒体流，请先配置完媒体信息，再启动推送组件
- * @param type   推送媒体类型
  * @return       true:成功;false:失败
  */
 bool ty_start_media();
 
+/**
+ * 关闭推送媒体流
+ * @return       true:成功;false:失败
+ */
+bool ty_stop_media();
+
+/**
+ * 获取当前媒体推送的类型
+ * @return       详见MediaType
+ */
+MediaType ty_media_get_media_state();
 /**
  * 推送音频媒体流，请先运行ty_start_media
  * @param mic         采集的媒体缓存
