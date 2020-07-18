@@ -34,6 +34,9 @@ std::map<std::string, requestFn> requestApis = {
         {"/api/v1/get_rule_by_id",    handle_get_rule_by_id},
         {"/api/v1/get_image",         handle_get_image},
         {"/api/v1/report_access",     handle_report_access},
+        {"/api/v1/startmedia",        handle_startmedia},
+        {"/api/v1/stopmedia",         handle_stopmedia},
+        {"/api/v1/getmediastate",     handle_getmediastate},
 };
 
 
