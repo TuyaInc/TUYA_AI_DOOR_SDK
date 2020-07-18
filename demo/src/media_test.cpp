@@ -185,7 +185,12 @@ namespace tuya
         }
     }
 
-    void MediaTest::start()
+    bool MediaTest::stop()
+    {
+        return ty_stop_media();
+    }
+
+    bool MediaTest::start()
     {
         printf("MediaTest::start()MediaTest::start()");
         ty_media_set_video_resolution(emMediaVideoTypeMain,1280,720);
@@ -193,14 +198,23 @@ namespace tuya
         ty_media_set_frame_rate(emMediaTypeAudio,30);
         ty_media_set_frame_rate(emMediaTypeVideo,30);
         ty_media_set_audio_call_back(audiocallback);
-        ty_start_media();
+        bool ret = ty_start_media();
+        if(ret)
+        {
+            startpush();
+        }
+        return ret;
+    }
 
+    void MediaTest::startpush()
+    {
         std::thread myvideo([&]
         {
             int times = 0;
             unsigned char idrframe[I_FRAME_SIZE] = {0};
             unsigned char pframe[I_FRAME_SIZE] = {0};
-            while(1)
+            bool pusheresult = true;
+            while(pusheresult)
             {
                 printf("video main replay times left = %d,size = %d\n",times++,sizevideo);
                 unsigned int start = 0;
@@ -240,14 +254,22 @@ namespace tuya
                             memcpy(idrframe + idrposition.spslen,filevideobuf + idrposition.ppspos,idrposition.ppslen);
                         }
                         memcpy(idrframe + idrposition.spslen + idrposition.ppslen,filevideobuf + idrposition.idrpos,idrposition.idrlen);
-                        ty_push_media_video(emMediaVideoTypeMain,idrframe,frame.size);
+                        pusheresult = ty_push_media_video(emMediaVideoTypeMain,idrframe,frame.size);
                         memset(idrframe,0,I_FRAME_SIZE);
+                        if(!pusheresult)
+                        {
+                            break;
+                        }
                     }
                     else if(frame.type == MediaTest::Frame::FrameType::emFrameTypeP)
                     {
                         memcpy(pframe,filevideobuf + frame.position.head,frame.size);
-                        ty_push_media_video(emMediaVideoTypeMain, pframe,frame.size);
+                        pusheresult = ty_push_media_video(emMediaVideoTypeMain, pframe,frame.size);
                         memset(pframe,0,I_FRAME_SIZE);
+                        if(!pusheresult)
+                        {
+                            break;
+                        }
                     }
                     start = frame.position.data;
                 }
@@ -260,7 +282,8 @@ namespace tuya
             int times = 0;
             unsigned char idrframe[I_FRAME_SIZE_SUB] = {0};
             unsigned char pframe[I_FRAME_SIZE_SUB] = {0};
-            while(1)
+            bool pusheresult = true;
+            while(pusheresult)
             {
                 printf("video sub replay times left = %d,size = %d\n",times++,sizevideosub);
                 unsigned int start = 0;
@@ -300,14 +323,22 @@ namespace tuya
                             memcpy(idrframe + idrposition.spslen,filevideobufsub + idrposition.ppspos,idrposition.ppslen);
                         }
                         memcpy(idrframe + idrposition.spslen + idrposition.ppslen,filevideobufsub + idrposition.idrpos,idrposition.idrlen);
-                        ty_push_media_video(emMediaVideoTypeSub1,idrframe,frame.size);
+                        pusheresult = ty_push_media_video(emMediaVideoTypeSub1,idrframe,frame.size);
                         memset(idrframe,0,I_FRAME_SIZE_SUB);
+                        if(!pusheresult)
+                        {
+                            break;
+                        }
                     }
                     else if(frame.type == MediaTest::Frame::FrameType::emFrameTypeP)
                     {
                         memcpy(pframe,filevideobufsub + frame.position.head,frame.size);
-                        ty_push_media_video(emMediaVideoTypeSub1, pframe,frame.size);
+                        pusheresult = ty_push_media_video(emMediaVideoTypeSub1, pframe,frame.size);
                         memset(pframe,0,I_FRAME_SIZE_SUB);
+                        if(!pusheresult)
+                        {
+                            break;
+                        }
                     }
                     start = frame.position.data;
                 }
@@ -321,7 +352,8 @@ namespace tuya
             #define  NN 640
             char spk[NN];
             char mic[NN];
-            while(1)
+            bool pusheresult = true;
+            while(pusheresult)
             {
                 printf("audio replay times left = %d,mic len = %d,spk len = %d\n",times++,sizeaudiomic,sizeaudiospk);
                 unsigned int offset = 0;
@@ -337,7 +369,11 @@ namespace tuya
                     }
                     memcpy(mic,fileaudiomic+offset,len);
                     memcpy(spk,fileaudiospk+offset,len);
-                    ty_push_media_audio(reinterpret_cast<const unsigned char *>(mic), len,nullptr);
+                    pusheresult = ty_push_media_audio(reinterpret_cast<const unsigned char *>(mic), len,nullptr);
+                    if(!pusheresult)
+                    {
+                        break;
+                    }
                     offset += len;
                 }
             }
@@ -345,6 +381,11 @@ namespace tuya
         });
         myaudio.detach();
     
+    }
+
+    int MediaTest::getMediaState()
+    {
+        return ty_media_get_media_state();
     }
 }
 

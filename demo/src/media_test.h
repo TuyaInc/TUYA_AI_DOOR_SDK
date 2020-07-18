@@ -2,6 +2,7 @@
 #define AI_PAD_SDK_MEDIA_TEST_H
 #include<stdio.h>
 #include "Singleton.h"
+#include <common_type.h>
 namespace tuya
 {
     class MediaTest : public Singleton<MediaTest>
@@ -57,12 +58,15 @@ namespace tuya
     public:
         MediaTest();
         ~MediaTest();
-        void start();
+        bool start();
+        bool stop();
+        int getMediaState();
     private:
         unsigned char * getVideoFromFile(std::string path, unsigned int& size);
         unsigned char * getAudioFromFile(std::string path, unsigned int& size);
         Frame::FrameType getFrameType(const unsigned char* pVideoBuf, unsigned int pos);
         void getH264HeaderPos(const unsigned char* pVideoBuf, unsigned int buffLen, unsigned int start, struct Frame* frame);
+        void startpush();
     private:
         unsigned int sizevideo = 0;
         unsigned char * filevideobuf = nullptr;

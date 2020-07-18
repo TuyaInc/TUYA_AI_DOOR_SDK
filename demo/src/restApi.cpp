@@ -15,6 +15,7 @@
 #include "restApi.h"
 #include "acs_handlers.h"
 
+
 typedef void(*requestFn)(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
 
 std::map<std::string, requestFn> requestApis = {
@@ -33,6 +34,9 @@ std::map<std::string, requestFn> requestApis = {
         {"/api/v1/get_rule_by_id",    handle_get_rule_by_id},
         {"/api/v1/get_image",         handle_get_image},
         {"/api/v1/report_access",     handle_report_access},
+        {"/api/v1/startmedia",        handle_startmedia},
+        {"/api/v1/stopmedia",         handle_stopmedia},
+        {"/api/v1/getmediastate",     handle_getmediastate},
 };
 
 
@@ -134,6 +138,7 @@ restApi::restApi() : ws_nc(nullptr) {
     realpath(basePath, apath);
     queryDeviceInfo(&acs_env);
     acs_env.basePath = apath;
+
     // acs_env.pid = buildStr("wauichsp84htijtv");
     // acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
     // acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
@@ -141,7 +146,7 @@ restApi::restApi() : ws_nc(nullptr) {
     acs_env.pid = buildStr("8krgasdila00tmqx");
     acs_env.uuid = buildStr("tuya82cd807d9f1bbb2f");
     acs_env.pkey = buildStr("klCa1goCO7JB9ON0mf5wWtDeE1iDGhu7");
-    
+
     printf("acs_env.pid  = %s\n",acs_env.pid);
     printf("acs_env.uuid  = %s\n",acs_env.uuid);
     printf("acs_env.pkey  = %s\n",acs_env.pkey);
