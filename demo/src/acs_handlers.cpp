@@ -7,7 +7,9 @@
 #include <tuya_media_sdk.h>
 
 #ifdef MEDIA_STREAM
+
 #include "media_test.h"
+
 #endif
 
 #include <rapidjson/writer.h>
@@ -194,17 +196,20 @@ void init_acs_after_activated(restApi *thiz, int ret) {
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
         exit(0);
     } else {
-        uint64_t ts = 0;
-        int tz = 0;
-        ty_get_server_time(&ts);
-
-        printf("ty_get_server_time %lld\n", ts);
-
-        char cmd[256]{0};
-        sprintf(cmd, "date +%%s -s @%lld", ts);
-        printf("run cmd:%s\n", cmd);
-        system(cmd);
-        system("hwclock -w");
+        pool.push([thiz](int id) {
+            uint64_t ts = 0;
+            int tz = 0;
+            while (ts == 0) {
+                ty_get_server_time(&ts);
+                printf("ty_get_server_time %lld\n", ts);
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+            }
+            char cmd[256]{0};
+            sprintf(cmd, "date +%%s -s @%lld", ts);
+            printf("run cmd:%s\n", cmd);
+            system(cmd);
+            system("hwclock -w");
+        });
     }
 
 #ifdef MEDIA_STREAM

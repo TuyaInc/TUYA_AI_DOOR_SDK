@@ -118,6 +118,10 @@ web_dist: demo 网页
 ### Version: 1.0.29
 	1. 多媒体推送支持关闭功能
 	
+### Version: 1.0.30
+	1. 重试 `ty_get_server_time` 直到获取时间成功。 server time 时间会在服务器第一个接口完成之后获取正确结果
+	2. 禁用云存储相关的日志
+	
 
 
 
