@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.0.27"
+#define TY_SDK_VERSION "1.0.30"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -412,7 +412,7 @@ void ty_add_upgrade_callback(const char *upgradePath,
 
 /**
  * 获取服务器时间, 时区通过dp点下发获取
- * @param timestamp timestamp , unit second
+ * @param timestamp timestamp , unit second. 为 0 时请延时200ms 后再试。 这个时间会在服务器第一个接口完成之后获取正确结果
  */
 void ty_get_server_time(uint64_t *timestamp);
 

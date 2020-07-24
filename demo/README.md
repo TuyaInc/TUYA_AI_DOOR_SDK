@@ -12,7 +12,20 @@
 1. demo/lib/liball_static.a: SDK静态库
 2. demo/include: SDK 头文件
 3. demo/third_party: demo 中使用的三方库
-4. web_dist: demo 中使用的 web 页面文件
+4. demo/resource: 推送音视频可以使用的测试文件流
+5. web_dist: demo 中使用的 web 页面文件
+
+### 多媒体（音视频）推送功能
+1. 设备必须注册上云端才能实现多媒体推送，默认同时开启音频和视频推送，目前提供主/辅码流两路视频流，一路音频流
+2. 只要设备起来后在web端可开启媒体推送功能（Start Media)，不管涂鸦智能app是否连接上设备，多媒体会持续推送
+3. 多媒体推送开发（接口具体参数详见头文件，先设置配置，再启动多媒体推送模块，然后推送多媒体）
+    1. 配置多媒体推送参数：ty_media_set_video_resolution/ty_media_set_frame_rate
+        1. 如果不设置参数，默认视频帧率25，主码流1280*720，辅码流128*128；音频帧率25
+        2. 不可设置参数：推送音频格式pcm/8k/8bit/mono，视频比特率主码流1M，辅码流512K
+    2. 开启推送模块ty_start_media
+    3. 开始推送多媒体ty_push_media_audio/ty_push_media_video
+    4. 涂鸦智能app喊话声音会在ty_media_set_audio_call_back设置的回调函数中，上层需要实现此接口回调，接收到的音频格式是G711U（8k,8bit）
+4. 视频推送接口ty_push_media_video只支持h264（yuv420）编码格式，视频帧需要组装好后下发到sdk，详见media_test.cpp
 
 ### 可能出现的问题
 

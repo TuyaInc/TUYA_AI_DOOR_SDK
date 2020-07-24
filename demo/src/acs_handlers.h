@@ -39,6 +39,9 @@ void handle_get_rule_by_id(restApi *thiz, struct mg_connection *nc, struct http_
 void handle_get_image(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
 
 void handle_report_access(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
+void handle_startmedia(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
+void handle_stopmedia(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
+void handle_getmediastate(restApi *thiz, struct mg_connection *nc, struct http_message *hm);
 
 char *buildStr(std::string str);
 

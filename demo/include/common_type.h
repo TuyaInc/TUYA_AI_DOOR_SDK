@@ -103,11 +103,15 @@ struct DeviceDetail {
     char *companyLogo;
 };
 
+// 媒体类型，音频/视频
 enum MediaType {
-    emMediaTypeVideo = 0,
-    emMediaTypeAudio
+    emMediaTypeNone = 0,
+    emMediaTypeVideo = 1,
+    emMediaTypeAudio = 2,
+    emMediaTypeAudioAndVideo = emMediaTypeVideo | emMediaTypeAudio
 };
 
+// 视频通道号
 enum MediaVideoType {
     emMediaVideoTypeMain = 0,
     emMediaVideoTypeSub1,
