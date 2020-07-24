@@ -142,7 +142,7 @@ restApi::restApi() : ws_nc(nullptr) {
     acs_env.pid = buildStr("wauichsp84htijtv");
     acs_env.uuid = buildStr("tuya5771bcbe4d0f570a");
     acs_env.pkey = buildStr("MwRPgwvWK9ED5pZ3KPTF6rXNKg9OVzcq");
-     
+
     acs_env.dbKey = buildStr("aflajdsfj");
     acs_env.dbKdfIter = 1000;
 
