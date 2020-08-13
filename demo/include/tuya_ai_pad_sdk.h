@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.0.30"
+#define TY_SDK_VERSION "1.1.0"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -372,14 +372,15 @@ void ty_free_rule_info(Rule *p, uint32_t size);
  * 该方法的返回结果是从服务端查询出来的， 一般用于在线判断权限模式
  *
  * @param uid visitor 或 member 的uid， 当为陌生人时，该参数被忽略
- * @param picPath 访问记录照片文件路径
+ * @param pic_path 访问记录照片文件路径，包含背景和人脸的图片
+ * @param face_pic_path 访问人脸图片。该参数在 C 端配网的时候才需要用到，如果图片不为人脸图片或参数为 NULL, 会 C 端陌生人相关功能； B 端配网则会忽略该参数
  * @param user_type 用户类型 1 正式成员， 2 访客， 3 陌生人
  * @param timestamp 访问发生时的时间戳, millisecond
  * @param temp 体温测量值。 小于 0 表示未进行体温测量； 大于等于 0 表示当前进行体温测量的体温数值
  * @param tempOk 当前体温值是否在合理体温范围内。 1 表示合理； 0 表示不合理
  * @return 该用户是否有访问权限,服务端判断，0 有访问权限， 非0 没有访问权限
  */
-int ty_report_access(const char *uid, const char *picPath, int user_type, uint64_t timestamp, float temp, int tempOk);
+int ty_report_access(const char *uid, const char *pic_path, const char *face_pic_path, int user_type, uint64_t timestamp, float temp, int tempOk);
 
 /**
  * 通过rules 字段，本地判断该成员是否有访问权限
@@ -429,6 +430,18 @@ void ty_set_get_timezone_offset_millis_callback(ty_get_timezone_offset_millis cb
  * @param cb
  */
 void ty_set_tuya_log_callback(ty_log_cb cb);
+
+/**
+ * 图片内容解密，此函数只有在 C 端配网的时候才有效果。 B 端配网只是将文件打开，并拷贝内容到到 out_buffer
+ *
+ * 图片解密后为图片编码后信息内容，需要解码
+ *
+ * @param pic_path 图片文件地址
+ * @param out_buffer 解密后图片数据指针。 需要自己调用 free() 函数释放内存
+ * @param out_size out_buffer 大小。 小于等于0 表示解密失败
+ * @return
+ */
+int ty_decrypt_picture(const char *pic_path, uint8_t **out_buffer, uint32_t *out_size);
 
 #ifdef  __cplusplus
 };

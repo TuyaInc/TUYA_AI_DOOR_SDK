@@ -812,16 +812,21 @@ void handle_get_image(restApi *thiz, struct mg_connection *nc, struct http_messa
     mg_str mime{"image/jpeg", strlen("image/jpeg")};
     mg_str options{};
 
-    mg_http_serve_file(nc, hm, path, mime, options);
+
+//    mg_http_serve_file(nc, hm, path, mime, options);
+    uint8_t *buf = nullptr;
+    uint32_t size = 0;
+    ty_decrypt_picture(path, &buf, &size);
+    mg_http_serve_file_data(nc, hm, buf, size, mime, options);
 }
 
 
-void reportAccessToServer(restApi *thiz, bool online, const char *uid, const char *picPath, int user_type, float temp,
+void reportAccessToServer(restApi *thiz, bool online, const char *uid, const char *picPath, const char *picFacePath, int user_type, float temp,
                           bool tempOk) {
     using namespace std::chrono;
     milliseconds ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
-    auto ret = ty_report_access(uid, picPath, user_type, ms.count(), temp, tempOk);
+    auto ret = ty_report_access(uid, picPath, picFacePath, user_type, ms.count(), temp, tempOk);
 
     if (online) {
         rapidjson::StringBuffer s;
@@ -841,7 +846,7 @@ void reportAccessToServer(restApi *thiz, bool online, const char *uid, const cha
 }
 
 
-bool offlinePermission(const char *uid, const char *picPath, int user_type, float temp, bool tempOk) {
+bool offlinePermission(const char *uid, const char *picPath, const char *picFacePath, int user_type, float temp, bool tempOk) {
     using namespace std::chrono;
     auto ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 
@@ -867,8 +872,8 @@ bool offlinePermission(const char *uid, const char *picPath, int user_type, floa
             user_type = FACE_TYPE_UNKNOWN;
     }
 
-    pool.push([uid, picPath, user_type, ms, temp, tempOk](int) {
-        ty_report_access(uid, picPath, user_type, ms, temp, tempOk);
+    pool.push([uid, picPath, picFacePath, user_type, ms, temp, tempOk](int) {
+        ty_report_access(uid, picPath, picFacePath, user_type, ms, temp, tempOk);
     });
 
     return canAccess;
@@ -899,6 +904,8 @@ void handle_report_access(restApi *thiz, struct mg_connection *nc, struct http_m
         return;
     }
 
+    auto picFacePath = getString(d, "picFacePath", "");
+
     auto userType = getInt(d, "userType", -1);
     if (userType == -1) {
         mg_http_send_error(nc, 400, "userType is invalid");
@@ -923,11 +930,12 @@ void handle_report_access(restApi *thiz, struct mg_connection *nc, struct http_m
     int m = false;
 
     if (online) {
-        pool.push([thiz, online, uid, picPath, userType, temp, tempOK](int) {
-            reportAccessToServer(thiz, online, uid.data(), picPath.data(), userType, temp, tempOK);
+        pool.push([thiz, online, uid, picPath, picFacePath, userType, temp, tempOK](int) {
+            reportAccessToServer(thiz, online, uid.data(), picPath.data(), picFacePath.data(),
+                                 userType, temp, tempOK);
         });
     } else {
-        m = offlinePermission(uid.data(), picPath.data(), userType, temp, tempOK);
+        m = offlinePermission(uid.data(), picPath.data(), picFacePath.data(), userType, temp, tempOK);
     }
 
 

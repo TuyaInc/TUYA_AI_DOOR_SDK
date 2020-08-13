@@ -87,7 +87,7 @@ static void handle_upload(struct mg_connection *nc, int ev, void *p) {
         case MG_EV_HTTP_PART_BEGIN: {
             if (data == NULL) {
                 data = (struct file_writer_data *) calloc(1, sizeof(struct file_writer_data));
-                data->fp = fopen("acs_report", "wb");
+                data->fp = fopen(mp->var_name, "wb");
                 data->bytes_written = 0;
 
                 if (data->fp == NULL) {
