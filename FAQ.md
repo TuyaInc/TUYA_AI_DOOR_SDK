@@ -12,3 +12,5 @@
 
     A:不需要，这时服务端还是处于配网成功状态，所以需要上次账号才能配网,正常 deactivate 是可以用其他账号配网的 
 
+#### Q我们设备还支持“恢复出厂设置”，我想在恢复出厂设置代码里调用ty_deactivate_sdk解除服务端的配网状态。如果此时网络不通，sdk不能跟服务后台同步信息，会怎样？代码里是不是只要判断ty_deactivate_sdk返回值为成功就可以认为解绑成功？ 
+    对, int ty_deactivate_sdk(int force) , force 需要是 0 
