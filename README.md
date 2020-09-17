@@ -128,6 +128,11 @@ web_dist: demo 网页
 	1. 添加C端配网支持
 	2. `ty_report_access` 接口添加 `face_pic_path` 字段，用于上传切割出来的人脸图片，与C端业务相关。 B 端业务可不传递
 	3. C 端图片在本地是以加密的方式存储的，通过路径获取的图片需要通过 `ty_decrypt_picture` 接口进行解码。 B 端同样可以使用该接口，内部会做密码查询，如果没有查到密码就将原文件内容拷贝
+
+
+
+### Version: 1.1.1
+	1. 添加 `groupId`, `groupName` 至 `DeviceDetail` 信息中
 	
 
 

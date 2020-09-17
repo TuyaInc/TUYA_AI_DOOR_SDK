@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.1.0"
+#define TY_SDK_VERSION "1.1.1"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -436,7 +436,7 @@ void ty_set_tuya_log_callback(ty_log_cb cb);
  *
  * 图片解密后为图片编码后信息内容，需要解码
  *
- * @param pic_path 图片文件地址
+ * @param pic_path 图片文件地址，传入的是一个文件的绝对地址，文件前置路径要创建好
  * @param out_buffer 解密后图片数据指针。 需要自己调用 free() 函数释放内存
  * @param out_size out_buffer 大小。 小于等于0 表示解密失败
  * @return

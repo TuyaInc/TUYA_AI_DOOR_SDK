@@ -473,6 +473,10 @@ void handle_get_device_detail(restApi *thiz, struct mg_connection *nc, struct ht
     writer.String(d.companyName);
     writer.Key("companyLogo");
     writer.String(d.companyLogo);
+    writer.Key("groupName");
+    writer.String(d.groupName);
+    writer.Key("groupId");
+    writer.Int64(d.groupId);
     writer.EndObject();
 
     SEND_HEADER

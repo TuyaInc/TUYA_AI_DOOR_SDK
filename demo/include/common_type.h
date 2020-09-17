@@ -101,6 +101,8 @@ struct DeviceDetail {
     char *name;
     char *companyName;
     char *companyLogo;
+    char *groupName;
+    long groupId;
 };
 
 // 媒体类型，音频/视频

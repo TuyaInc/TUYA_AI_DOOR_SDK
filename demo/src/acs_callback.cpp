@@ -33,6 +33,10 @@ void cb_device_detail(DeviceDetail *d) {
     writer.String(d->companyName);
     writer.Key("companyLogo");
     writer.String(d->companyLogo);
+    writer.Key("groupName");
+    writer.String(d->groupName);
+    writer.Key("groupId");
+    writer.Int64(d->groupId);
 
     writer.EndObject();
 
