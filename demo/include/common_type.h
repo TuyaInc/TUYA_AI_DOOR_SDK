@@ -61,7 +61,7 @@ struct DPEvent {
 #define FW_MD5_LEN      32        // max length of firmware md5
 #endif
 #ifndef SW_VER_LEN
-#define SW_VER_LEN      10      // max string length of VERSION
+#define SW_VER_LEN      20      // max string length of VERSION
 #endif
 
 typedef struct {

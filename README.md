@@ -134,7 +134,9 @@ web_dist: demo 网页
 ### Version: 1.1.1
 	1. 添加 `groupId`, `groupName` 至 `DeviceDetail` 信息中
 	
-
+### Version: 1.1.2
+	1. 将 `TUYA_FW_INFO` 结构体移除， 用 `A_FW_UG_S` 替代 
+	
 
 
 

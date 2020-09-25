@@ -71,14 +71,8 @@ struct Rule {
  */
 #define TUYA_FW_URL_LEN      255       // max length of firmware download url
 #define TUYA_FW_MD5_LEN      32        // max length of firmware md5
-#define TUYA_SW_VER_LEN      10        // max string length of VERSION
-typedef struct TUYA_FW_INFO {
-    unsigned char tp;                  // firmware type
-    char fw_url[TUYA_FW_URL_LEN + 1];  // firmware download url
-    char fw_md5[TUYA_FW_MD5_LEN + 1];  // firmware md5
-    char sw_ver[TUYA_SW_VER_LEN + 1];  // firmware version
-    unsigned int file_size;            // firmware size in BYTE
-} TUYA_FW_INFO;
+#define TUYA_SW_VER_LEN      20        // max string length of VERSION
+#define TUYA_FW_INFO A_FW_UG_S
 
 /**
  * 日志打印回调
