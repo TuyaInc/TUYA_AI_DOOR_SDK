@@ -137,6 +137,9 @@ web_dist: demo 网页
 ### Version: 1.1.2
 	1. 将 `TUYA_FW_INFO` 结构体移除， 用 `A_FW_UG_S` 替代 
 	
+### Version: 1.1.3
+	1. 添加 `ty_get_password_md5` 接口， 用于获取密码 md5 32 文本 
+	
 
 
 

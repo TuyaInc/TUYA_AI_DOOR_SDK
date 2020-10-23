@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.1.1"
+#define TY_SDK_VERSION "1.1.3"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -436,6 +436,13 @@ void ty_set_tuya_log_callback(ty_log_cb cb);
  * @return
  */
 int ty_decrypt_picture(const char *pic_path, uint8_t **out_buffer, uint32_t *out_size);
+
+/**
+ * 获取密码 md5 32 值， 该值从缓存中读取，每次启动、每30分钟 从服务端尝试获取一次。 建议每次比对都从该接口获取数据
+ * @param out_pwd 传入申请好的内存指针，用于获取密码 md5 32 文本。 最大长度暂定 129
+ * @return 密码 md5 32 文本长度, 小于等于0 表示密码未从服务端获取
+ */
+int ty_get_password_md5(char * out_pwd);
 
 #ifdef  __cplusplus
 };

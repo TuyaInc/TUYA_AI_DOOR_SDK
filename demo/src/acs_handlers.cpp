@@ -209,6 +209,20 @@ void init_acs_after_activated(restApi *thiz, int ret) {
             printf("run cmd:%s\n", cmd);
             system(cmd);
             system("hwclock -w");
+
+
+            auto len = 0;
+
+            char pwd[129];
+
+            while (len <= 0) {
+                len = ty_get_password_md5(pwd);
+                if (len <= 0) {
+                    printf("------------------------ pwd not ready\n");
+                }
+            }
+
+            printf("------------------------get pwd md5: %s\n", pwd);
         });
     }
 
