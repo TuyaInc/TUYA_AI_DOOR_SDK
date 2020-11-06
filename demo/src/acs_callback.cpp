@@ -7,7 +7,15 @@
 #include <rapidjson/writer.h>
 #include <rapidjson/stringbuffer.h>
 #include <rapidjson/document.h>
-
+#include <net/if.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #include "acs_callback.h"
 #include "restApi.h"
@@ -313,6 +321,91 @@ long timezoneOffsetCb() {
 
 const char update_file_path[] = "./update.bin";
 
+
+#define NET_DEV "eth0"
+
+int connStatusCb(){
+    int sock;
+    struct   sockaddr_in *sin;
+    struct   ifreq ifr;
+
+    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+        return -1;
+    }
+
+    memset(&ifr, 0, sizeof(ifr));
+    strncpy(ifr.ifr_name, NET_DEV, sizeof(ifr.ifr_name) - 1);
+
+    if(ioctl(sock,SIOCGIFFLAGS,&ifr) < 0) {
+        close(sock);
+        return -1;
+    }
+    close(sock);
+
+    if(0 == (ifr.ifr_flags & IFF_UP)) {
+//        printf("hwl_bnw_station_conn false\n");
+        return -1;
+    }
+
+//    printf("hwl_bnw_station_conn true\n");
+    return 0;
+}
+
+int getIpCb(NW_IP_S_ACS *ip){
+    int sock;
+    char ipaddr[50];
+
+    struct   sockaddr_in *sin;
+    struct   ifreq ifr;
+
+    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+        return -1;
+    }
+
+    memset(&ifr, 0, sizeof(ifr));
+    strncpy(ifr.ifr_name, NET_DEV, sizeof(ifr.ifr_name) - 1);
+
+    if( ioctl( sock, SIOCGIFADDR, &ifr) < 0 ) {
+        close(sock);
+        return -1;
+    }
+
+    sin = (struct sockaddr_in *)&ifr.ifr_addr;
+    strcpy(ip->ip,inet_ntoa(sin->sin_addr));
+    close(sock);
+
+    return 0;
+}
+
+int getMacCb(NW_MAC_S_ACS *mac){
+    int sock;
+    struct   sockaddr_in *sin;
+    struct   ifreq ifr;
+
+    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+        printf("socket create failse...GetLocalIp!\n");
+        return -1;
+    }
+
+    memset(&ifr, 0, sizeof(ifr));
+    strncpy(ifr.ifr_name, NET_DEV, sizeof(ifr.ifr_name) - 1);
+
+    if(ioctl(sock,SIOCGIFHWADDR,&ifr) < 0) {
+        printf("ioctl error errno\n");
+        close(sock);
+        return -1;
+    }
+    memcpy(mac->mac,ifr.ifr_hwaddr.sa_data,sizeof(mac->mac));
+
+    printf("WIFI Get MAC %02X-%02X-%02X-%02X-%02X-%02X\r\n",
+           mac->mac[0],mac->mac[1],mac->mac[2],mac->mac[3],mac->mac[4],mac->mac[5]);
+    close(sock);
+
+    return 0;
+}
+
+
+
 void bind_acs_callbacks(restApi *thiz) {
     acs_ctx = thiz;
     ty_set_device_detail_cb(cb_device_detail);
@@ -330,4 +423,8 @@ void bind_acs_callbacks(restApi *thiz) {
 
 
     ty_set_get_timezone_offset_millis_callback(timezoneOffsetCb);
+
+    ty_set_get_conn_status_callback(connStatusCb);
+    ty_set_get_ip_callback(getIpCb);
+    ty_set_get_mac_callback(getMacCb);
 }

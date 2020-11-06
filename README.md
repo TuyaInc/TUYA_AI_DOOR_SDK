@@ -140,6 +140,9 @@ web_dist: demo 网页
 ### Version: 1.1.3
 	1. 添加 `ty_get_password_md5` 接口， 用于获取密码 md5 32 文本 
 	
+### Version: 1.1.4
+	1. 添加网络相关回调 `ty_set_get_conn_status_callback`, `ty_set_get_ip_callback`, `ty_set_get_mac_callback` 
+	
 
 
 

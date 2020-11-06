@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-#define TY_SDK_VERSION "1.1.3"
+#define TY_SDK_VERSION "1.1.4"
 
 #define  USER_TYPE_MEMBER FACE_TYPE_MEMBER
 #define  USER_TYPE_VISITOR FACE_TYPE_VISITOR
@@ -166,6 +166,8 @@ typedef int(*SYNC_FACE_DATA_CHANGE_CALLBACK)(char *uid, char *name, char *avatar
  */
 typedef int (*TUYA_DP_CALLBACK)(DPEvent *event);
 
+
+
 /**
  * 设备信息回调
  * @param event
@@ -194,6 +196,24 @@ void ty_set_device_callback(TUYA_DEVICE_CALLBACK callback);
 
 //设置dp上报回调
 void ty_set_dp_report_callback(TUYA_DP_STATUS_REPORT_CALLBACK callback);
+
+/**
+ * 设置获取链接状态callback
+ * @param callback
+ */
+void ty_set_get_conn_status_callback(TUYA_GET_CONN_STATUS_CALLBACK callback);
+
+/**
+ * 设置获取 ip callback
+ * @param callback
+ */
+void ty_set_get_ip_callback(TUYA_GET_IP_CALLBACK callback);
+
+/**
+ * 设置获取 mac callback
+ * @param callback
+ */
+void ty_set_get_mac_callback(TUYA_GET_MAC_CALLBACK callback);
 
 /**
  * 发送dp信息
@@ -442,7 +462,7 @@ int ty_decrypt_picture(const char *pic_path, uint8_t **out_buffer, uint32_t *out
  * @param out_pwd 传入申请好的内存指针，用于获取密码 md5 32 文本。 最大长度暂定 129
  * @return 密码 md5 32 文本长度, 小于等于0 表示密码未从服务端获取
  */
-int ty_get_password_md5(char * out_pwd);
+int ty_get_password_md5(char *out_pwd);
 
 #ifdef  __cplusplus
 };

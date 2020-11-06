@@ -123,4 +123,44 @@ enum MediaVideoType {
 };
 
 
+/* tuya sdk definition of IP info */
+typedef struct
+{
+    CHAR_T ip[16];    /* ip addr:  xxx.xxx.xxx.xxx  */
+    CHAR_T mask[16];  /* net mask: xxx.xxx.xxx.xxx  */
+    CHAR_T gw[16];    /* gateway:  xxx.xxx.xxx.xxx  */
+}NW_IP_S_ACS;
+
+/* tuya sdk definition of MAC info */
+typedef struct
+{
+    BYTE_T mac[6]; /* mac address */
+}NW_MAC_S_ACS;
+
+
+/**
+ * 获取设备链接状态
+ *
+ * @return 返回 0 表示链接正常， 反之 非0
+ */
+typedef int (*TUYA_GET_CONN_STATUS_CALLBACK)();
+
+/**
+ * 获取设备 ip 地址
+ *
+ * @param ip 用于返回具体设备 ip 信息
+ *
+ * @return 返回 0 表示获取过程正常， 反之 非0
+ */
+typedef int (*TUYA_GET_IP_CALLBACK)(NW_IP_S_ACS *ip);
+
+/**
+ * 获取设备 MAC 地址
+ *
+ * @param mac 用于返回具体设备 mac 信息
+ *
+ * @return 返回 0 表示获取过程正常， 反之 非0
+ */
+typedef int (*TUYA_GET_MAC_CALLBACK)(NW_MAC_S_ACS *mac);
+
 #endif //AI_PAD_SDK_COMMON_TYPE_H
